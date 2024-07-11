@@ -2,4 +2,6 @@
 config_local.py
 
 # directories
+__pycache__/
+logs/
 venv/
