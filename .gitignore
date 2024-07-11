@@ -1,0 +1,5 @@
+# files
+config_local.py
+
+# directories
+venv/
