@@ -1,0 +1,17 @@
+{# prompt for whole actantial model with definitions inspired by llama-2-70B response #}
+According to the Actantial Model by Greimas with the actant label set ["Sender", "Receiver", "Subject", "Object", "Helper", "Opponent"], the actants are defined as follows:
+
+* Subject: The character who carries out the action and desires the Object.
+* Object: The character or thing that is desired.
+* Sender: The character who initiates the action and communicates the Object.
+* Receiver: The character who receives the action or the Object.
+* Helper: The character who assists the Subject in achieving its goal.
+* Opponent: The character who opposes the Subject in achieving its goal.
+
+Based on this Actantial Model and the actant label set, please recognize the actants in the given article.
+
+Article: {{ article }}
+
+Question: What are the main actants in the text? Provide the answer in the following JSON format: {"Actant Label": ["Actant Name"]}. If there is no corresponding actant, return the following empty list: {"Actant Label": []}.
+
+Answer:
