@@ -19,7 +19,7 @@ parser.add_argument(
     "-t",
     "--template",
     type=str,
-    help="Templates to use",
+    help="Templates to use (without .txt)",
 )
 parser.add_argument(
     "--model_path",
@@ -50,11 +50,12 @@ else:
     print("\n\nNo GPU, you mad?\n\n")
 
 model = args["model_path"]
+model_name = model.split("/")[-1]
 
 
 # logging
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-path_root = f"{model}_{args['template_group']}_{timestamp}"
+path_root = f"{model_name}_{args['template']}_{timestamp}"
 
 print(f"Logging to: {path_root}.log")
 
@@ -93,7 +94,7 @@ pipeline = transformers.pipeline(
 
 # prompt template
 environment = Environment(loader=FileSystemLoader("templates/"))
-template = environment.get_template(args["template"])
+template = environment.get_template(f'{args["template"]}.txt')
 
 # data
 data = NewsDatasetSQL(args["query"])
@@ -102,8 +103,8 @@ data = NewsDatasetSQL(args["query"])
 if __name__ == "__main__":
 
     # output
-    MODEL_DIR = Path(DATA_DIR, "actantial_models", args["model"])
-    PROMPT_DIR = Path(MODEL_DIR, args["template_group"])
+    MODEL_DIR = Path(DATA_DIR, "actantial_models", model_name)
+    PROMPT_DIR = Path(MODEL_DIR, args["template"])
     RUN_DIR = Path(PROMPT_DIR, timestamp)
 
     ensure_directory(MODEL_DIR)
