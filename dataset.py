@@ -2,10 +2,8 @@ import sqlite3
 import pandas as pd
 
 from pathlib import Path
-from llam.utils import parse_json_message
-from llam.constants import ACTANTS
 from torch.utils.data import Dataset
-from llam.config_local import DATA_DIR
+from config_local import DATA_DIR
 
 
 class NewsDatasetSQL(Dataset):
